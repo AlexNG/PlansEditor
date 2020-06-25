@@ -1,0 +1,20 @@
+﻿@* todo to helper and to head *@
+<script>
+    function getConfig() {
+        var config = Object.assign({
+            height: 405,
+            layout: "fitColumns",
+            columns: [
+                { title: "Date", field: "Priority", editor: "number" },
+                { title: "Description", field: "Description", headerFilter: "input", editor: "textarea" },
+                getDeleteColumn()
+            ]
+        }, baseConfig);
+        config.ajaxURL = baseURL + "event";
+        return config;
+    }
+
+    function afterInit() {
+        tabulator.addFilter("planId", "=", @ViewBag.PlanId);
+    }
+</script>

@@ -1,0 +1,22 @@
+﻿@* todo to helper and to head *@
+<script>
+    function getEventsUrl(anchor) {
+        return `@Url.Action("Event")?planId=${anchor._cell.row.data.Id}`;
+    }
+
+    function getConfig() {
+        var config = Object.assign({
+            height: 405,
+            layout: "fitColumns",
+            columns: [
+                { title: "Name", field: "Name", headerFilter: true, editor: "input" },
+                { title: "Priority", field: "Priority", editor: "number" },
+                { title: "Events", formatter: "link", formatterParams: { label: "Events", url: getEventsUrl, target: "_blank" } },
+                { title: "Description", field: "Description", headerFilter: "input", editor: "textarea" },
+                getDeleteColumn()
+            ]
+        }, baseConfig);
+        config.ajaxURL = baseURL + "plan";
+        return config;
+    }
+</script>
